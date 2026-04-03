@@ -1,0 +1,56 @@
+@use "./variables" as var;
+
+@mixin structExampMix($width, $bgCol, $titleBgCol, $titleSize) {
+  display: grid;
+  width: $width;
+  margin: var.$spacing-gap;
+  height: calc($width / 1.5);
+  grid-template-rows: 3fr 1fr;
+  background-color: $bgCol;
+  border-radius: calc($width / 12);
+  transition-duration: var.$transition-medium;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 3rem $titleBgCol;
+    transform: scale(1.05);
+  }
+
+  .imgBlock {
+    display: grid;
+    img {
+      justify-self: center;
+      align-self: center;
+      background-color: var.$whiteActiveColor;
+      width: 90%;
+      height: 90%;
+      border-radius: calc($width / 15);
+    }
+  }
+
+  .textBlock {
+    display: grid;
+    align-items: center;
+    background-color: $titleBgCol;
+    border-bottom: {
+      left-radius: calc($width / 12);
+      right-radius: calc($width / 12);
+    }
+
+    p {
+      margin: 0;
+      font-size: $titleSize;
+      text-align: center;
+      color: white;
+    }
+  }
+}
+
+.structExampA {
+  @include structExampMix(
+    20vw,
+    var.$lightMainColor,
+    var.$mainColor,
+    var.$font-block
+  );
+}

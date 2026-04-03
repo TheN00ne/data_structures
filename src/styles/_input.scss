@@ -1,0 +1,90 @@
+@use "./variables" as var;
+
+@mixin inputMix(
+  $width,
+  $spacing,
+  $passiveCol: var.$whitePassiveColor,
+  $activeCol: var.$whiteActiveColor,
+  $svgColor,
+  $svgWidth
+) {
+  width: $width;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var.$spacing-gap;
+  background-color: $passiveCol;
+  border-radius: $width;
+  margin: $spacing;
+  transition-duration: var.$transition-superFast;
+
+  &:hover,
+  &:has(input:focus) {
+    background-color: $activeCol;
+  }
+
+  input {
+    min-width: 0;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    padding-left: var.$spacing-gap;
+    background-color: transparent;
+
+    &::placeholder {
+      color: black;
+    }
+  }
+
+  .iconBlock {
+    display: grid;
+    justify-content: center;
+    padding: $spacing;
+  }
+
+  .iconsBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var.$spacing-svg;
+    padding: $spacing;
+  }
+
+  .iconBlock .inputIconBG,
+  .iconsBlock .inputIconBG {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    background-color: $svgColor;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    padding: var.$spacing-svg;
+    cursor: pointer;
+    transition-duration: var.$transition-fast;
+    user-select: none;
+
+    &:hover {
+      background-color: var.$activeMainColor;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      box-shadow: 0 0 10px var.$activeMainColor;
+      transform: scale(1.1);
+      transform-origin: transform;
+      transition-duration: 0.1s;
+    }
+  }
+}
+
+.inputA {
+  @include inputMix(
+    20vw,
+    var.$spacing-gap,
+    var.$whitePassiveColor,
+    var.$whiteActiveColor,
+    var.$activeMainColor,
+    1.5rem
+  );
+}

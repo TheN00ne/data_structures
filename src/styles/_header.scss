@@ -1,0 +1,39 @@
+@use "./variables" as var;
+
+//ВИКОРИСТОВУЙ ШАБЛОНИ!!!
+
+.mainHeader {
+  background-color: var.$ultraDarkMainColor;
+  height: 120px;
+  padding: var.$spacing-modal;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .leftSide {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: var.$spacing-gap;
+    justify-self: left;
+    align-items: center;
+    height: 100%;
+
+    p {
+      font-size: var.$font-header;
+      color: white;
+    }
+
+    .logo {
+      width: 6rem;
+      height: 6rem;
+      background-color: var.$activeMainColor;
+      border-radius: 3rem 1rem 3rem 1rem;
+    }
+  }
+
+  .rightSide {
+    align-items: center;
+    display: grid;
+    justify-self: right;
+    height: 100%;
+  }
+}

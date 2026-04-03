@@ -1,0 +1,48 @@
+@use "./variables" as var;
+
+@mixin switcherMix(
+  $width,
+  $bgCol,
+  $circlePassiveCol,
+  $circleActiveCol,
+  $margin
+) {
+  display: grid;
+  width: $width;
+  height: calc($width / 2.25);
+  border-radius: $width;
+  margin: $margin;
+  cursor: pointer;
+  background-color: $bgCol;
+
+  .switchActive,
+  .switchPassive {
+    width: calc($width / 2.75);
+    height: calc($width / 2.75);
+    position: relative;
+    border-radius: 50%;
+    align-self: center;
+    transition-duration: var.$transition-superFast;
+  }
+
+  .switchPassive {
+    left: calc(($width - ($width / 1.25)) / 3);
+    background-color: $circlePassiveCol;
+  }
+
+  .switchActive {
+    left: calc(($width - ($width / 2.5)) - ($width - ($width / 1.25)) / 3);
+    background-color: $circleActiveCol;
+    box-shadow: 0 0 10px $circleActiveCol;
+  }
+}
+
+.switcherA {
+  @include switcherMix(
+    8rem,
+    var.$whiteActiveColor,
+    var.$mainColor,
+    var.$activeMainColor,
+    var.$spacing-gap
+  );
+}

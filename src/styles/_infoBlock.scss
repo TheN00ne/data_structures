@@ -1,0 +1,48 @@
+@use "./variables" as var;
+
+@mixin infoBlockMix($width, $bgCol, $brdCol, $txtCol) {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: $width;
+  color: $txtCol;
+  background-color: $bgCol;
+  border: 0.25rem solid $brdCol;
+  border-radius: calc($width / 12);
+  margin: var.$spacing-gap;
+
+  &-opened,
+  &-closed {
+    padding: 1rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    transition-duration: var.$transition-superSlow;
+    scrollbar-width: thin;
+    scrollbar-color: var.$mainColor transparent;
+  }
+
+  &-closed {
+    max-height: 3rem;
+    overflow: hidden;
+    opacity: 50%;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .moreOrLess {
+    background-color: var.$mainColor;
+    text-align: center;
+    cursor: pointer;
+    font-size: var.$font-title;
+    border-bottom: {
+      left-radius: calc($width / 15);
+      right-radius: calc($width / 15);
+    }
+    user-select: none;
+  }
+}
+
+.infoBlockA {
+  @include infoBlockMix(25vw, var.$lightMainColor, var.$mainColor, white);
+}

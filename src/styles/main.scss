@@ -1,0 +1,53 @@
+@use "./variables" as var;
+@use "./header";
+@use "./button";
+@use "./input";
+@use "./switcher";
+@use "./structExamp";
+@use "./infoBlock";
+@use "./confirm";
+
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: var.$blackColor;
+  font-family: "Comfortaa", sans-serif;
+}
+
+.block1 {
+  font-size: var.$font-header;
+  padding: var.$spacing-space;
+}
+.block2 {
+  font-size: var.$font-title;
+  padding: var.$spacing-window;
+}
+.block3 {
+  font-size: var.$font-modal;
+  padding: var.$spacing-modal;
+}
+.block4 {
+  font-size: var.$font-block;
+  padding: var.$spacing-block;
+}
+.block5 {
+  font-size: var.$font-button;
+  padding: var.$spacing-button;
+}
+.block6 {
+  font-size: var.$font-text;
+  padding: var.$spacing-gap;
+}
+.block7 {
+  font-size: var.$font-info;
+  padding: var.$spacing-text;
+}
+.block8 {
+  font-size: var.$font-notice;
+  padding: var.$spacing-svg;
+}

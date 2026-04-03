@@ -1,0 +1,114 @@
+@use "./variables" as var;
+@use "./button" as btn;
+
+@mixin confirmMix($width, $titleBgCol, $titleTxtCol, $descBgCol, $descTxtCol) {
+  width: $width;
+  margin: var.$spacing-gap;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: $descBgCol;
+  border-radius: calc($width / 10);
+  // left: calc(50% - $width / 2);
+  // top: calc(50% - $width / 2);
+  opacity: 100%;
+
+  &-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+
+  &-background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: grey;
+    opacity: 80%;
+  }
+
+  &-titleBlock {
+    background-color: $titleBgCol;
+    border-top: {
+      left-radius: calc($width / 10);
+      right-radius: calc($width / 10);
+    }
+    h2 {
+      text-align: center;
+      color: $titleTxtCol;
+    }
+  }
+
+  &-descBlock {
+    max-height: 8rem;
+    font-weight: bold;
+    text-align: center;
+    padding: var.$spacing-text;
+    color: $descTxtCol;
+    overflow-y: auto;
+  }
+
+  &-btnBlock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var.$spacing-gap;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var.$spacing-gap;
+  }
+
+  &-confirm {
+    flex: 1 1 calc(50% - var.$spacing-gap / 2);
+    box-sizing: border-box;
+    @include btn.buttonMix(
+      100%,
+      var.$spacing-svg,
+      var.$mainColor,
+      var.$activeMainColor,
+      var.$font-button,
+      white,
+      2.5rem,
+      var.$activeMainColor
+    );
+    margin: 0;
+  }
+
+  &-deny {
+    flex: 1 1 calc(50% - var.$spacing-gap / 2);
+    box-sizing: border-box;
+    @include btn.buttonMix(
+      100%,
+      var.$spacing-svg,
+      var.$redColor,
+      var.$redActiveColor,
+      var.$font-button,
+      white,
+      2.5rem,
+      var.$redActiveColor
+    );
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    &-confirm,
+    &-deny {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+.confirmA {
+  @include confirmMix(
+    25vw,
+    var.$mainColor,
+    white,
+    var.$whiteActiveColor,
+    black
+  );
+}

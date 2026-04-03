@@ -1,0 +1,68 @@
+@use "./variables" as var;
+
+@mixin buttonMix(
+  $btnWidth,
+  $spacing,
+  $bgColor,
+  $activeBgColor,
+  $textSize,
+  $textColor,
+  $svgWidth,
+  $svgColor
+) {
+  width: $btnWidth;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  gap: var.$spacing-gap;
+  background-color: $bgColor;
+  border-radius: 2rem;
+  padding: {
+    left: $spacing;
+    right: $spacing;
+  }
+  margin: $spacing;
+  transition-duration: var.$transition-fast;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(4px);
+    background-color: $activeBgColor;
+    box-shadow: 0 0 1rem $activeBgColor;
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+
+  p {
+    color: $textColor;
+    font-size: $textSize;
+  }
+
+  .btnIconBG {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    background-color: $svgColor;
+    width: auto;
+    height: auto;
+    padding: var.$spacing-svg;
+    border-radius: 50%;
+  }
+}
+
+.btnBlock {
+  @include buttonMix(
+    19vw,
+    var.$spacing-button,
+    var.$darkMainColor,
+    var.$activeMainColor,
+    var.$font-button,
+    white,
+    2.5rem,
+    var.$activeMainColor
+  );
+}
