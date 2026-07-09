@@ -3,18 +3,24 @@ import SearchSVG from "../SVG/SearchSVG";
 import CrossSVG from "../SVG/CrossSVG";
 import { InputType } from "../../types/componentsTypes";
 
-//Якщо що зроби для пошуку через useMemo
-
 const Input: React.FC<InputType> = ({
   isSearch = false,
   placeholderText = "input",
   className = "inputA",
+  searchFunc,
 }) => {
   const [inputValue, setInputValue] = useState<string>("");
 
   return (
     <div className={className}>
       <input
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          isSearch
+            ? e.code == "Enter"
+              ? searchFunc!(inputValue)
+              : null
+            : null;
+        }}
         type="text"
         placeholder={`${placeholderText}...`}
         value={inputValue}
@@ -24,7 +30,12 @@ const Input: React.FC<InputType> = ({
       />
       <div className={isSearch ? `iconsBlock` : `iconBlock`}>
         {isSearch ? (
-          <div className="inputIconBG">
+          <div
+            className="inputIconBG"
+            onClick={() => {
+              searchFunc!(inputValue);
+            }}
+          >
             <SearchSVG size={30} color={"#000"} />
           </div>
         ) : null}

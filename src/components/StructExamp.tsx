@@ -2,17 +2,18 @@ import React from "react";
 import { StructExampType } from "../types/componentsTypes";
 
 const StructExamp: React.FC<StructExampType> = ({
-  title,
+  type,
   imgURL,
   className,
+  onChoose,
 }) => {
   return (
-    <div className={className}>
+    <div onClick={() => onChoose(type)} className={className}>
       <div className="imgBlock">
-        <img src={imgURL} alt={title} />
+        <img src={imgURL} alt={type} />
       </div>
       <div className="textBlock">
-        <p>{title}</p>
+        <p>{type}</p>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import structuresReducer from "./reducers/structuresReducer";
 import uiReducer from "./reducers/uiReducer";
-import { App } from "./components/App";
+import App from "./components/App";
 import "./styles/main.scss";
 
 const root = ReactDOM.createRoot(

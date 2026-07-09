@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { InfoBlockType } from "../../types/componentsTypes";
+import { DynamicBlockType } from "../../types/componentsTypes";
 
-const InfoBlock: React.FC<InfoBlockType> = ({ children, className }) => {
+const DynamicBlock: React.FC<DynamicBlockType> = ({ children, className }) => {
   const [isOpened, setIsOpened] = useState(false);
   return (
     <div className={className}>
@@ -22,4 +22,4 @@ const InfoBlock: React.FC<InfoBlockType> = ({ children, className }) => {
   );
 };
 
-export default InfoBlock;
+export default DynamicBlock;

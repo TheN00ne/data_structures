@@ -1,14 +1,17 @@
 @use "./variables" as var;
 
-@mixin infoBlockMix($width, $bgCol, $brdCol, $txtCol) {
+@mixin dynamicBlockMix($width, $bgCol, $brdCol, $txtCol) {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 3rem;
   width: $width;
   color: $txtCol;
   background-color: $bgCol;
   border: 0.25rem solid $brdCol;
   border-radius: calc($width / 12);
   margin: var.$spacing-gap;
+  &:has(&-closed) {
+    height: 8rem;
+  }
 
   &-opened,
   &-closed {
@@ -30,6 +33,14 @@
     text-align: center;
   }
 
+  li {
+    margin: var.$spacing-gap;
+  }
+
+  dd {
+    font-size: var.$font-info;
+  }
+
   .moreOrLess {
     background-color: var.$mainColor;
     text-align: center;
@@ -40,9 +51,15 @@
       right-radius: calc($width / 15);
     }
     user-select: none;
+    transition-duration: var.$transition-fast;
+
+    &:hover {
+      background-color: var.$activeMainColor;
+      box-shadow: 0 0 2rem var.$activeMainColor;
+    }
   }
 }
 
 .infoBlockA {
-  @include infoBlockMix(25vw, var.$lightMainColor, var.$mainColor, white);
+  @include dynamicBlockMix(25vw, var.$lightMainColor, var.$mainColor, white);
 }

@@ -1,0 +1,58 @@
+@use "./variables" as var;
+
+.structuresMenuContainer {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  .structuresMenu {
+    width: 70vw;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+
+    header {
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      background-color: var.$ultraDarkMainColor;
+      display: grid;
+      justify-content: center;
+    }
+
+    .structMenuBody {
+      height: 70vh;
+      overflow: auto;
+      background-color: var.$darkMainColor;
+
+      .nothing {
+        height: 100%;
+        font-size: var.$font-title;
+        font-weight: bold;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        color: white;
+      }
+
+      .structs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto, 1fr);
+        justify-self: center;
+      }
+    }
+
+    footer {
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      background-color: var.$ultraDarkMainColor;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+    }
+  }
+}

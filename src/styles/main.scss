@@ -4,8 +4,12 @@
 @use "./input";
 @use "./switcher";
 @use "./structExamp";
-@use "./infoBlock";
+@use "./dynamicBlock";
+@use "./staticBlock";
 @use "./confirm";
+@use "./structuresMenu";
+@use "./structureInit";
+@use "./background";
 
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
 
@@ -17,6 +21,14 @@ body {
   margin: 0;
   background-color: var.$blackColor;
   font-family: "Comfortaa", sans-serif;
+}
+
+.block {
+  @for $i from 1 through 8 {
+    &#{$i} {
+      color: white;
+    }
+  }
 }
 
 .block1 {

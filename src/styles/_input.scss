@@ -2,6 +2,7 @@
 
 @mixin inputMix(
   $width,
+  $height,
   $spacing,
   $passiveCol: var.$whitePassiveColor,
   $activeCol: var.$whiteActiveColor,
@@ -9,7 +10,7 @@
   $svgWidth
 ) {
   width: $width;
-  height: auto;
+  height: $height;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
@@ -40,14 +41,14 @@
   .iconBlock {
     display: grid;
     justify-content: center;
-    padding: $spacing;
+    padding-right: $spacing;
   }
 
   .iconsBlock {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var.$spacing-svg;
-    padding: $spacing;
+    padding-right: $spacing;
   }
 
   .iconBlock .inputIconBG,
@@ -81,6 +82,7 @@
 .inputA {
   @include inputMix(
     20vw,
+    4vw,
     var.$spacing-gap,
     var.$whitePassiveColor,
     var.$whiteActiveColor,

@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import { ConfigType } from "../../types/componentsTypes";
+import Background from "./Background";
 
 const Confirm: React.FC<ConfigType> = ({
   title,
@@ -15,7 +16,7 @@ const Confirm: React.FC<ConfigType> = ({
 }) => {
   return (
     <>
-      <div className={`${className}-background`}> </div>
+      <Background />
       <div className={`${className}-container`}>
         <div className={className}>
           <div className={`${className}-titleBlock`}>
@@ -26,12 +27,14 @@ const Confirm: React.FC<ConfigType> = ({
 
           <div className={`${className}-btnBlock`}>
             <Button
+              enable={true}
               Icon={denyIcon}
               btnText={denyTxt}
               className={`${className}-deny`}
               eventFunc={onDeny}
             />
             <Button
+              enable={true}
               Icon={confirmIcon}
               btnText={confirmTxt}
               className={`${className}-confirm`}

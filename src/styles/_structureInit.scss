@@ -1,0 +1,103 @@
+@use "./variables" as var;
+@use "./button" as btn;
+
+@mixin structureInitMix(
+  $width,
+  $height,
+  $bgColor,
+  $headerColor,
+  $scrollbarColor,
+  $borderRad
+) {
+  &-container {
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    position: fixed;
+    top: calc((100vh - $height) / 2);
+    left: calc((100vw - $width) / 2);
+    width: $width;
+    height: $height;
+    background-color: $bgColor;
+    border-radius: $borderRad;
+  }
+
+  &-main {
+    display: grid;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $scrollbarColor transparent;
+
+    img {
+      width: 70%;
+      border-radius: 2rem;
+      margin: 1rem;
+      justify-self: center;
+      background-color: white;
+    }
+  }
+
+  header,
+  footer {
+    display: grid;
+    color: white;
+    background-color: $headerColor;
+    text-align: center;
+    align-content: center;
+    font-size: var.$font-block;
+  }
+
+  header {
+    border-radius: $borderRad $borderRad 0 0;
+  }
+
+  footer {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+    border-radius: 0 0 $borderRad $borderRad;
+  }
+
+  &-cancel,
+  &-create {
+    box-sizing: border-box;
+  }
+
+  &-cancel {
+    @include btn.buttonMix(
+      95%,
+      var.$spacing-svg,
+      var.$redColor,
+      var.$redActiveColor,
+      var.$font-button,
+      white,
+      2.5rem,
+      var.$redActiveColor
+    );
+    margin: 0;
+  }
+
+  &-create {
+    @include btn.buttonMix(
+      95%,
+      var.$spacing-svg,
+      var.$mainColor,
+      var.$activeMainColor,
+      var.$font-button,
+      white,
+      2.5rem,
+      var.$activeMainColor
+    );
+    margin: 0;
+  }
+}
+
+.structInitA {
+  @include structureInitMix(
+    35vw,
+    90vh,
+    var.$darkMainColor,
+    var.$ultraDarkMainColor,
+    var.$ultraDarkMainColor,
+    30px
+  );
+}

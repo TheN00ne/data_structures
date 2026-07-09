@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Header } from "./Header";
 
 import Button from "./UI/Button";
 import Input from "./UI/Input";
 import Switcher from "./UI/Switcher";
-import StructExamp from "./StructExamp";
-import InfoBlock from "./UI/InfoBlock";
+import StructuresMenu from "./StructuresMenu";
+import DynamicBlock from "./UI/DynamicBlock";
 import Confirm from "./UI/Confirm";
+import StructureInit from "./StructureInit";
 
 import AddSVG from "../components/SVG/AddSVG";
 import MinusSVG from "./SVG/MinusSVG";
@@ -24,13 +25,10 @@ import ArrowLeftSVG from "./SVG/ArrowLeftSVG";
 import SearchSVG from "./SVG/SearchSVG";
 import SortSVG from "./SVG/SortSVG";
 
-import arrImg from "../asset/resource/arrayImg.png";
-import listImg from "../asset/resource/listImg.png";
-import stackImg from "../asset/resource/stackImg.png";
-import queueImg from "../asset/resource/queueImg.png";
-import treeImg from "../asset/resource/treeImg.png";
-import graphImg from "../asset/resource/graphImg.png";
-import hashTableImg from "../asset/resource/hash_tableImg.png";
+import { structureType } from "../types/dataTypes";
+import { structuresData } from "../data/structuresConfig";
+import { structureConfig } from "../types/dataTypes";
+import { structureSubType } from "../types/dataTypes";
 
 //У масиві - ключі, а у списку - вузли (у вузлів є посилання наадресу наступний елементу)
 //AVL дерево, Б дерево, 2-3 дерево, червоно-чорні дерева ???
@@ -39,22 +37,53 @@ import hashTableImg from "../asset/resource/hash_tableImg.png";
 
 //Зроби Code Splitting
 
-export const App: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+const App: React.FC = () => {
+  const [isConfirmOpen, setIsConfirmOpen] = useState<boolean>(false);
+  const [isStructMenuOpen, setIsStructMenuOpen] = useState<boolean>(false);
+  const [isStructInitMenuOpen, setIsStructInitMenuOpen] =
+    useState<boolean>(false);
+
+  const [selectedStruct, setSelectedStruct] = useState<structureType | null>(
+    null,
+  );
+  const [chosenStructType, setChosenStructType] = useState<
+    | structureConfig<"Array">
+    | structureConfig<"List">
+    | structureConfig<"Stack">
+    | structureConfig<"Queue">
+    | structureConfig<"Tree">
+    | structureConfig<"Graph">
+    | structureConfig<"Hash_Table">
+    | undefined
+  >(undefined);
+
+  const [chosenStructSubtype, setChosenStructSubtype] = useState<
+    string | undefined
+  >(undefined);
+
+  useEffect(() => {
+    const struct = structuresData.find(
+      (struct) => struct.type === selectedStruct,
+    );
+    if (struct) {
+      setChosenStructType(struct);
+      setChosenStructSubtype(Object.keys(struct?.subType)[0]);
+    }
+  }, [selectedStruct]);
 
   const configFuncExamp = () => {
     console.log("Config");
-    setIsOpen(false);
+    setIsConfirmOpen(false);
   };
 
   const denyFuncExamp = () => {
     console.log("Deny");
-    setIsOpen(false);
+    setIsConfirmOpen(false);
   };
 
   return (
     <div>
-      <Header />
+      <Header openMenuFunc={setIsStructMenuOpen} />
       <div className="block1">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, vel?
       </div>
@@ -84,91 +113,118 @@ export const App: React.FC = () => {
         btnText={"Some sort of text"}
         Icon={<AddSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<MinusSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<DotsMoreSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<BurgerSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<CrossSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<CheckSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<InfoSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<ArrowCircleSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<EditSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<ArrowRightSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<ArrowLeftSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<SearchSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<SortSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
       <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<TrashSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
+        enable={true}
       />
 
       <Input isSearch={false} placeholderText="AAA" className="inputA" />
-      <Input isSearch={true} placeholderText="AAA" className="inputA" />
+      <Input
+        isSearch={true}
+        placeholderText="AAA"
+        className="inputA"
+        searchFunc={() => {}}
+      />
       <Switcher className="switcherA" />
 
-      <InfoBlock className="infoBlockA">
+      {isStructMenuOpen ? (
+        <StructuresMenu
+          openMenuFunc={setIsStructMenuOpen}
+          openInitFunc={setIsStructInitMenuOpen}
+          selectedType={setSelectedStruct}
+        />
+      ) : null}
+
+      <DynamicBlock className="infoBlockA">
         <h2>Main Header</h2>
         <h3>Header</h3>
         <p>
@@ -198,28 +254,9 @@ export const App: React.FC = () => {
           <dt>Title 2</dt>
           <dd>Description 2</dd>
         </dl>
-      </InfoBlock>
+      </DynamicBlock>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gridTemplateRows: "repeat(2, 1fr)",
-        }}
-      >
-        <StructExamp title="Array" imgURL={arrImg} className="structExampA" />
-        <StructExamp title="List" imgURL={listImg} className="structExampA" />
-        <StructExamp title="Stack" imgURL={stackImg} className="structExampA" />
-        <StructExamp title="Queue" imgURL={queueImg} className="structExampA" />
-        <StructExamp title="Tree" imgURL={treeImg} className="structExampA" />
-        <StructExamp title="Graph" imgURL={graphImg} className="structExampA" />
-        <StructExamp
-          title="Hash Table"
-          imgURL={hashTableImg}
-          className="structExampA"
-        />
-      </div>
-      {isOpen ? (
+      {isConfirmOpen ? (
         <Confirm
           title="Title"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium odio minima deserunt. Cum quaerat, doloremque nisi nostrum saepe, enim pariatur nihil amet hic odit officiis voluptate "
@@ -232,11 +269,22 @@ export const App: React.FC = () => {
           onDeny={denyFuncExamp}
         />
       ) : null}
+
+      {isStructInitMenuOpen && selectedStruct && chosenStructType ? (
+        <StructureInit
+          className="structInitA"
+          openInitFunc={setIsStructInitMenuOpen}
+          structData={chosenStructType as any}
+          sub={chosenStructSubtype as any}
+        />
+      ) : null}
     </div>
   );
 };
 
-//Напиши у всіх компонентів alias для пропсів і винеси їх у types
+export default App;
+
+//Напиши у всіх компонентах alias для пропсів і винеси їх у types
 
 //Зроби Code Splitting
 

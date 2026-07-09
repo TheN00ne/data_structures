@@ -1,0 +1,14 @@
+@use "./variables" as var;
+
+@mixin staticBlockMixin($width, $bgCol, $borderCol) {
+  width: $width;
+  background-color: $bgCol;
+  border: 0.25rem solid $borderCol;
+  border-radius: 1rem;
+  padding: var.$spacing-gap;
+  margin: var.$spacing-gap;
+}
+
+.staticBlockA {
+  @include staticBlockMixin(75%, var.$lightMainColor, var.$mainColor);
+}

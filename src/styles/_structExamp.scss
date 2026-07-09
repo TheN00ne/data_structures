@@ -1,5 +1,17 @@
 @use "./variables" as var;
 
+@keyframes tremble {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
+
 @mixin structExampMix($width, $bgCol, $titleBgCol, $titleSize) {
   display: grid;
   width: $width;
@@ -10,10 +22,10 @@
   border-radius: calc($width / 12);
   transition-duration: var.$transition-medium;
   cursor: pointer;
+  box-sizing: border-box;
 
   &:hover {
-    box-shadow: 0 0 3rem $titleBgCol;
-    transform: scale(1.05);
+    box-shadow: 0 0 5rem $titleBgCol;
   }
 
   .imgBlock {
@@ -46,11 +58,26 @@
   }
 }
 
-.structExampA {
+.structExampA,
+.structExampA-active {
   @include structExampMix(
     20vw,
     var.$lightMainColor,
     var.$mainColor,
     var.$font-block
   );
+}
+
+.structExampA {
+  &:hover {
+    animation-name: tremble;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+  }
+}
+
+.structExampA-active {
+  box-shadow: 0 0 3rem var.$mainColor;
+  border: 3px solid white;
 }
