@@ -1,0 +1,10 @@
+@use "./variables" as var;
+
+@mixin structuresPanelMix() {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.panelA {
+  @include structuresPanelMix();
+}

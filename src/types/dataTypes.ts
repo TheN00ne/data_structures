@@ -56,3 +56,51 @@ export interface structureConfig<T extends structureType> {
   settings: React.ReactNode;
   subType: Record<structureSubType[T], subTypeI>;
 }
+
+export interface arrayI {
+  id: number;
+  subtype: Record<structureSubType["Array"], subTypeI>;
+  data: (number | string | boolean)[];
+  length: number;
+  maxSize: number;
+  isSorted: boolean;
+}
+
+export interface listI {
+  id: number;
+  subtype: Record<structureSubType["List"], subTypeI>;
+  length: number;
+  head: any;
+  tail: any;
+  isDoubly: any;
+  isCircular: any;
+}
+
+export interface stackI {
+  id: number;
+  subtype: Record<structureSubType["Stack"], subTypeI>;
+  data: (number | string | boolean)[];
+  topIndex: number;
+  maxSize?: number;
+  currentSize: number;
+}
+
+export interface queueI {
+  id: number;
+  subtype: Record<structureSubType["Queue"], subTypeI>;
+  data: (number | string | boolean)[];
+  frontIndex: number;
+  rearIndex: number;
+  maxSize?: number;
+  currentSize: number;
+}
+
+export interface treeI {
+  id: number;
+  subtype: Record<structureSubType["Queue"], subTypeI>;
+  root: any;
+  size: number;
+  height: number;
+}
+
+export type structureI = arrayI | listI | stackI | queueI | treeI;

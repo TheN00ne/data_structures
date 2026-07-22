@@ -13,12 +13,20 @@ import CheckSVG from "./SVG/CheckSVG";
 
 import { structureSubType, structureType } from "../types/dataTypes";
 import { Settings } from "./UI/Settings";
+import { useDispatch } from "react-redux";
+
+import {
+  addStruct,
+  delStruct,
+  updateStruct,
+} from "../reducers/structuresReducer";
 
 const StructureInit = <T extends structureType>({
   className,
   openInitFunc,
   structData,
   sub,
+  subChange,
 }: StructureInitType<T>) => {
   const [subType, setSubType] = useState<structureSubType[T]>(sub);
 
@@ -40,6 +48,8 @@ const StructureInit = <T extends structureType>({
 
   if (!currentSubTypeData) return null;
 
+  const dispatch = useDispatch();
+
   return (
     <div className={className}>
       <Background />
@@ -55,7 +65,10 @@ const StructureInit = <T extends structureType>({
               className=""
               structData={structData}
               sub={subType}
-              subChange={setSubType}
+              subChange={(nextSubType) => {
+                setSubType(nextSubType);
+                subChange?.(nextSubType);
+              }}
             />
           </StaticBlock>
           <DynamicBlock className="infoBlockA">
@@ -116,6 +129,16 @@ const StructureInit = <T extends structureType>({
             btnText="Create"
             Icon={<CheckSVG size={20} color={"#000"} />}
             eventFunc={() => {
+              // dispatch(
+              //   addStruct({
+              //     id: Date.now(),
+              //     subtype: subType,
+              //     data: [],
+              //     length: 0,
+              //     maxSize: 10,
+              //     isSorted: false,
+              //   }),
+              // );
               openInitFunc(false);
             }}
           />

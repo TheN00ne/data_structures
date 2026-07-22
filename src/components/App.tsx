@@ -30,6 +30,8 @@ import { structuresData } from "../data/structuresConfig";
 import { structureConfig } from "../types/dataTypes";
 import { structureSubType } from "../types/dataTypes";
 
+import { StructuresPanels } from "./StructuresPanels";
+
 //У масиві - ключі, а у списку - вузли (у вузлів є посилання наадресу наступний елементу)
 //AVL дерево, Б дерево, 2-3 дерево, червоно-чорні дерева ???
 
@@ -84,7 +86,7 @@ const App: React.FC = () => {
   return (
     <div>
       <Header openMenuFunc={setIsStructMenuOpen} />
-      <div className="block1">
+      {/* <div className="block1">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, vel?
       </div>
       <div className="block2">
@@ -107,8 +109,8 @@ const App: React.FC = () => {
       </div>
       <div className="block8">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, vel?
-      </div>
-      <Button
+      </div> */}
+      {/* <Button
         className="btnBlock"
         btnText={"Some sort of text"}
         Icon={<AddSVG size={30} color={"#000"} />}
@@ -205,26 +207,18 @@ const App: React.FC = () => {
         Icon={<TrashSVG size={30} color={"#000"} />}
         eventFunc={() => {}}
         enable={true}
-      />
+      /> */}
 
-      <Input isSearch={false} placeholderText="AAA" className="inputA" />
+      {/* <Input isSearch={false} placeholderText="AAA" className="inputA" />
       <Input
         isSearch={true}
         placeholderText="AAA"
         className="inputA"
         searchFunc={() => {}}
       />
-      <Switcher className="switcherA" />
+      <Switcher className="switcherA" /> */}
 
-      {isStructMenuOpen ? (
-        <StructuresMenu
-          openMenuFunc={setIsStructMenuOpen}
-          openInitFunc={setIsStructInitMenuOpen}
-          selectedType={setSelectedStruct}
-        />
-      ) : null}
-
-      <DynamicBlock className="infoBlockA">
+      {/* <DynamicBlock className="infoBlockA">
         <h2>Main Header</h2>
         <h3>Header</h3>
         <p>
@@ -254,7 +248,17 @@ const App: React.FC = () => {
           <dt>Title 2</dt>
           <dd>Description 2</dd>
         </dl>
-      </DynamicBlock>
+      </DynamicBlock> */}
+
+      <StructuresPanels clasName="panelA" />
+
+      {isStructMenuOpen ? (
+        <StructuresMenu
+          openMenuFunc={setIsStructMenuOpen}
+          openInitFunc={setIsStructInitMenuOpen}
+          selectedType={setSelectedStruct}
+        />
+      ) : null}
 
       {isConfirmOpen ? (
         <Confirm
@@ -276,6 +280,7 @@ const App: React.FC = () => {
           openInitFunc={setIsStructInitMenuOpen}
           structData={chosenStructType as any}
           sub={chosenStructSubtype as any}
+          subChange={setChosenStructSubtype as any}
         />
       ) : null}
     </div>

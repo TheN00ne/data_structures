@@ -64,6 +64,7 @@ export interface StructureInitType<T extends structureType> {
   structData: structureConfig<T>;
   openInitFunc: (arg: boolean) => void;
   sub: structureSubType[T];
+  subChange?: (v: structureSubType[T]) => void;
 }
 
 export interface SettingsType<T extends structureType> {
